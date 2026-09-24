@@ -19,11 +19,16 @@ int	count_words(const char *s, char c)
 	count = 0;
 	while (*s != '\0')
 	{
-		if (*s == c)
+		if (*s != c)
+		{
 			count++;
-		s++;
+			while (*s != '\0' && *s != c)
+				s++;
+		}
+		else
+			s++;
 	}
-	return (count + 1);
+	return (count);
 }
 
 int	eachwordlen(const char **s, char c)
@@ -63,26 +68,35 @@ char	*copyword(char const **s, char c)
 	return (word);
 }
 
-char	**ft_split(char const *s, char c)
+char	**free_container(char **container, int i)
 {
-	char	**container;
-	int		numberofwords;
-	int		wordlen;
-	int		i;
-	char	*word;
+	while (i > 0)
+		free(container[--i]);
+	free(container);
+	return (NULL);
+}
 
+char    **ft_split(char const *s, char c)
+{
+	char    **container;
+	int     numberofwords;
+	int     i;
+	char    *word;
+	
 	numberofwords = count_words(s, c);
-	container = malloc(numberofwords * sizeof(char *));
+	container = malloc((numberofwords + 1) * sizeof(char *));
+	if (container == NULL)
+		return (NULL);
 	i = 0;
 	while (i < numberofwords)
 	{
+		while (*s == c)
+			s++;
 		word = copyword(&s, c);
-		wordlen = eachwordlen(&s, c);
-		container[i] = malloc (wordlen * sizeof(char));
-		if (container[i] == NULL)
-			return (NULL);
-		container[i] = word;
-		i++;
+		if (word == NULL)
+			return (free_container(container, i));
+		eachwordlen(&s, c);
+		container[i++] = word;
 	}
 	container[i] = NULL;
 	return (container);

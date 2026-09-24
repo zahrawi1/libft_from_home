@@ -10,18 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int	signofnumber(const char **ch)
 {
-	int	sign;
-
-	sign = 1;
-	while ((**ch == '+' || **ch == '-') && (**ch != '\0'))
+	if (**ch == '-')
 	{
-		if (**ch == '-')
-			sign *= -1;
 		(*ch)++;
+		return (-1);
 	}
-	return (sign);
+       	if (**ch == '+')
+	{
+		(*ch)++;
+		return (1);
+	}
+	return (1);
 }
 
 void	skipwhitespaces(const char **ptr)
@@ -40,7 +43,7 @@ int	ft_atoi(const char *nptr)
 	container = 0;
 	while (*nptr != '\0' && (*nptr >= '0' && *nptr <= '9'))
 	{
-		container = (container * 10) + (*nptr % '0');
+		container = (container * 10) + (*nptr - '0');
 		nptr++;
 	}
 	return (sign * container);

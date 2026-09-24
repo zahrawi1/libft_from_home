@@ -12,6 +12,7 @@
 
 #include <stddef.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 void	*ft_calloc(size_t n, size_t size)
 {
@@ -19,7 +20,11 @@ void	*ft_calloc(size_t n, size_t size)
 	char	*ptr;
 	size_t	totalsize;
 
+	if (n != 0 && size > SIZE_MAX / n)
+		return (NULL);
 	totalsize = n * size;
+	if (totalsize == 0)
+		totalsize++;
 	container = malloc(totalsize);
 	if (container == NULL)
 		return (NULL);

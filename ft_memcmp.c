@@ -12,7 +12,7 @@
 
 #include <stddef.h>
 
-int memcmp(const void *s1, const void *s2, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	const char	*ptr1;
 	const char	*ptr2;
@@ -21,9 +21,7 @@ int memcmp(const void *s1, const void *s2, size_t n)
 	ptr2 = s2;
 	while (n--)
 	{
-		if (*ptr1 > *ptr2)
-			return ((unsigned char)*ptr1 - (unsigned char)*ptr2);
-		else if (*ptr1 < *ptr2)
+		if ((unsigned char)*ptr1 != (unsigned char)*ptr2)
 			return ((unsigned char)*ptr1 - (unsigned char)*ptr2);
 		ptr1++;
 		ptr2++;

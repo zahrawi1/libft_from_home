@@ -69,7 +69,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		container = failedcase();
 		return (container);
 	}
-	container = malloc((end - first + 1) * sizeof (char));
+	container = malloc((end - first + 2) * sizeof (char));
 	if (container == NULL)
 		return (NULL);
 	i = 0;

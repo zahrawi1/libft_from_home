@@ -21,11 +21,13 @@ char	*ft_strrchr(const char *s, int c)
 		ptr++;
 	if (c == '\0')
 		return ((char *)ptr);
-	while (ptr >= s)
+	while (ptr > s)
 	{
-		if (*ptr == c)
+		if ((unsigned char)*ptr == (unsigned char)c)
 			return ((char *)ptr);
 		ptr--;
 	}
+	if (ptr == s && ((unsigned char)*ptr == (unsigned char)c))
+		return ((char *)ptr);
 	return (NULL);
 }

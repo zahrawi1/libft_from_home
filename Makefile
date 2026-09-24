@@ -44,6 +44,7 @@ SRC = ft_bzero.c \
 	ft_lstdelone.c \
 	ft_lstclear.c \
 	ft_lstiter.c \
+	ft_memcpy.c \
 	ft_lstmap.c 
 
 

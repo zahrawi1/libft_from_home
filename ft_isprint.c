@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(char ch)
+int	ft_isprint(int c)
 {
-	if ((ch >= 0 && ch <= 31) || ch == 127)
-		return (0);
-	return (1);
+	if (c >= 32 && c <= 126)
+		return (1);
+	return (0);
 }
